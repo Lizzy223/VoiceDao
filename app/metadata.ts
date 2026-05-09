@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
     title: 'VoiceDAO - Governance Dashboard',
     description: 'Decentralized governance powered by voice',
-    generator: 'v0.app',
     icons: {
         icon: [
             { url: '/apple-touch-icon.png', media: '(prefers-color-scheme: light)' },
