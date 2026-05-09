@@ -7,7 +7,8 @@
       "Bash(curl -o \"c:/Users/U/Downloads/rustup-init.exe\" \"https://win.rustup.rs/x86_64\")",
       "Bash(pnpm add *)",
       "Bash(Remove-Item -Recurse -Force \"c:\\\\Users\\\\U\\\\Downloads\\\\b_xfZJ0D0v26b\\\\.next\")",
-      "PowerShell(Stop-Process -Name \"node\" -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 3; cmd /c \"rd /s /q `\"C:\\\\Users\\\\U\\\\Downloads\\\\b_xfZJ0D0v26b\\\\.next`\"\"; Write-Output \"Exit: $LASTEXITCODE\")"
+      "PowerShell(Stop-Process -Name \"node\" -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 3; cmd /c \"rd /s /q `\"C:\\\\Users\\\\U\\\\Downloads\\\\b_xfZJ0D0v26b\\\\.next`\"\"; Write-Output \"Exit: $LASTEXITCODE\")",
+      "Bash(npx tsc *)"
     ]
   }
 }

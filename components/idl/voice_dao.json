@@ -1,0 +1,157 @@
+{
+    "version": "0.1.0",
+    "name": "voice_dao",
+    "instructions": [
+        {
+            "name": "createProposal",
+            "accounts": [
+                {
+                    "name": "proposal",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "proposer",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "ipfsHash",
+                    "type": "string"
+                },
+                {
+                    "name": "summary",
+                    "type": "string"
+                },
+                {
+                    "name": "duration",
+                    "type": "i64"
+                }
+            ]
+        },
+        {
+            "name": "castVote",
+            "accounts": [
+                {
+                    "name": "proposal",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "voteRecord",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "voter",
+                    "isMut": true,
+                    "isSigner": true
+                },
+                {
+                    "name": "systemProgram",
+                    "isMut": false,
+                    "isSigner": false
+                }
+            ],
+            "args": [
+                {
+                    "name": "support",
+                    "type": "bool"
+                },
+                {
+                    "name": "reasoningHash",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "accounts": [
+        {
+            "name": "Proposal",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "proposer",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "ipfsHash",
+                        "type": "string"
+                    },
+                    {
+                        "name": "summary",
+                        "type": "string"
+                    },
+                    {
+                        "name": "votesFor",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "votesAgainst",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "deadline",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "executed",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "bump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "VoteRecord",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "voter",
+                        "type": "publicKey"
+                    },
+                    {
+                        "name": "hasVoted",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "support",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "reasoningHash",
+                        "type": "string"
+                    },
+                    {
+                        "name": "bump",
+                        "type": "u8"
+                    }
+                ]
+            }
+        }
+    ],
+    "errors": [
+        {
+            "code": 6000,
+            "name": "ProposalExpired",
+            "msg": "This proposal has expired"
+        },
+        {
+            "code": 6001,
+            "name": "AlreadyVoted",
+            "msg": "You have already voted on this proposal"
+        }
+    ]
+}

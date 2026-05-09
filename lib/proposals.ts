@@ -60,8 +60,9 @@ export const saveVote = async (
         .eq("id", proposalId)
         .single();
 
+    const currentCount = (current as Record<string, number> | null)?.[column] ?? 0;
     await supabase
         .from("proposals")
-        .update({ [column]: (current?.[column] || 0) + 1 })
+        .update({ [column]: currentCount + 1 })
         .eq("id", proposalId);
 };
