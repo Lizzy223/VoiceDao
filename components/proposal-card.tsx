@@ -64,6 +64,19 @@ export function ProposalCard({ proposal, onVote }: ProposalCardProps) {
     }
   }, [])
 
+  const shareOnX = () => {
+    const base = process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin
+    const text = encodeURIComponent(
+      `🗳️ New VoiceDAO Proposal: "${proposal.title}"\n\n${proposal.summary}\n\nVote now 👇`
+    )
+    const url = encodeURIComponent(`${base}/proposal/${proposal.id}`)
+    const hashtags = encodeURIComponent("VoiceDAO,Solana,Web3,DAO")
+    window.open(
+      `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`,
+      "_blank"
+    )
+  }
+
   const getStatusColor = (status: Proposal["status"]) => {
     switch (status) {
       case "active":
@@ -162,14 +175,25 @@ export function ProposalCard({ proposal, onVote }: ProposalCardProps) {
               {proposal.votersCount} voters
             </span>
           </div>
-          <Button
-            size="sm"
-            onClick={() => onVote(proposal.id)}
-            disabled={proposal.status !== "active"}
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            Cast Vote
-          </Button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={shareOnX}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-black hover:bg-gray-900 text-white text-xs border border-gray-700 transition-colors"
+            >
+              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current shrink-0">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              Share
+            </button>
+            <Button
+              size="sm"
+              onClick={() => onVote(proposal.id)}
+              disabled={proposal.status !== "active"}
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Cast Vote
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
